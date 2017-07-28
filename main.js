@@ -2,7 +2,8 @@ const express = require('express')
 const path = require('path')
 const mustacheExpress = require('mustache-express')
 const app = express()
-const todos = ['Make the bed', 'wash the car']
+const todos = ['Make the bed', 'Wash the car']
+const completed = ['Make the bed', 'Wash the car']
 
 app.use(express.static('public'))
 app.engine('mustache', mustacheExpress())
