@@ -2,20 +2,44 @@ const express = require('express')
 const path = require('path')
 const mustacheExpress = require('mustache-express')
 const app = express()
-const todos = ['Make the bed', 'Wash the car']
-const completed = ['Make the bed', 'Wash the car']
+const expressValidator = require('express-validator')
+const bodyParser = require('body-parser')
+const toDoList = {
+  incompleteItems: [{ item: 'Fix errors on this list' }, { item: 'Add CSS Styling' }],
+  completedItems: []
+}
 
 app.use(express.static('public'))
+app.use(expressValidator())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.engine('mustache', mustacheExpress())
+
 app.set('views', './views')
 app.set('view engine', 'mustache')
 
 app.get('/', function(req, res) {
-  res.render('index', { todos: todos })
+  res.render('index', { toDoList: toDoList })
 })
 
 app.post('/', function(req, res) {
-  todos.push(req.body.todo)
+  toDoList.push(req.body.incompleteItems)
+  res.redirect('/')
+})
+
+app.post('/', (req, res) => {
+  toDoList.incompleteItems.push({ item: req.body.item })
+
+  res.redirect('/')
+})
+
+app.post('/completedItems/:item', (req, res) => {
+  toDoList.completedItems.push({ item: req.params.item })
+  toDoList.incompleteItems = toDoList.incompleteItems.filter(
+    incompleteItems => incompleteItems.item !== req.params.item
+  )
+
   res.redirect('/')
 })
 
