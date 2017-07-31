@@ -24,12 +24,12 @@ app.get('/', function(req, res) {
 })
 
 app.post('/', function(req, res) {
-  toDoList.push(req.body.incompleteItems)
+  toDoList.incompleteItems.push(req.body.incompleteItems)
   res.redirect('/')
 })
 
 app.post('/', (req, res) => {
-  toDoList.incompleteItems.push({ item: req.body.item })
+  toDoList.push({ item: req.body.item })
 
   res.redirect('/')
 })

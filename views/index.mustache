@@ -4,28 +4,35 @@
     <script src="https://use.fontawesome.com/03faaf7999.js"></script>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
-    {{#toDoList}}
-    <h2>What Needs Done?</h2>
-    <form action="/" method="post">
-      <input type="text" name="" value="">
-      <button type="submit" name="button">Add to List</button>
-    </form>
-    {{#incompleteItems}}
-    <form class="incomplete-items" action="/completedItems/{{item}}" method="post">
-      <ul>
-        <li><button type="submit"><i class="fa fa-check" aria-hidden="true"></i></button> <label>{{item}}</label></li>
-      </ul>
-    </form>
-    {{/incompleteItems}}
+    <div class="wrapper">
+      <div class="to-do-box">
+        {{#toDoList}}
+          <h1>What Needs Done?</h1>
+          <form action="/" method="post" class="add-item">
+            <input type="text" name="" value="">
+            <button type="submit" name="button" class="submit-btn">Add to List</button>
+          </form>
 
-    <h2>Completed Items</h2>
-    {{#completedItems}}
-    <ul class="completed-items">
-      <li>{{item}}</li>
-    </ul>
-    {{/completedItems}}
-    {{/toDoList}}
+          <h2>To-Do:</h2>
+          {{#incompleteItems}}
+            <form class="incomplete-items" action="/completedItems/{{item}}" method="post">
+              <ul>
+                <li><button type="submit" class="check"><i class="fa fa-check" aria-hidden="true"></i>{{item}}</button></li>
+              </ul>
+            </form>
+          {{/incompleteItems}}
+
+          <h2>Completed Items:</h2>
+          {{#completedItems}}
+            <ul class="completed-items">
+              <li>{{item}}</li>
+            </ul>
+          {{/completedItems}}
+        {{/toDoList}}
+      </div>
+    </div>
   </body>
 </html>
