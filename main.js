@@ -23,15 +23,10 @@ app.get('/', function(req, res) {
   res.render('index', { toDoList: toDoList })
 })
 
-app.post('/', function(req, res) {
-  toDoList.incompleteItems.push(req.body.incompleteItems)
+app.post('/add', function(req, res) {
+  toDoList.incompleteItems.push(req.body.listItem)
   res.redirect('/')
-})
-
-app.post('/', (req, res) => {
-  toDoList.push({ item: req.body.item })
-
-  res.redirect('/')
+  console.log(req.body.listItem)
 })
 
 app.post('/completedItems/:item', (req, res) => {
