@@ -9,7 +9,6 @@
   <body>
     <div class="wrapper">
       <div class="to-do-box">
-        {{#toDoList}}
           <h1>What Needs Done?</h1>
           <form action="/add" method="post" class="add-item">
             <input type="text" name="listItem" value="">
@@ -17,21 +16,20 @@
           </form>
 
           <h2>To-Do:</h2>
-          {{#incompleteItems}}
-            <form class="incomplete-items" action="/completedItems/{{item}}" method="post">
+          {{#uncompleted}}
+            <form class="incomplete-items" action="/completedItems" method="post">
               <ul>
-                <li><button type="submit" class="check"><i class="fa fa-square-o" aria-hidden="true"></i>{{item}}</button></li>
+                <li><button type="submit" class="check" name="id" value="{{id}}"><i class="fa fa-square-o" aria-hidden="true"></i>{{listItem}}</button></li>
               </ul>
             </form>
-          {{/incompleteItems}}
+          {{/uncompleted}}
 
           <h2>Completed Items:</h2>
-          {{#completedItems}}
+          {{#completed}}
             <ul class="completed-items">
-              <li><i class="fa fa-check" aria-hidden="true"></i>{{item}}</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>{{listItem}}</li>
             </ul>
-          {{/completedItems}}
-        {{/toDoList}}
+          {{/completed}}
       </div>
     </div>
   </body>
