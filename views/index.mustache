@@ -20,7 +20,7 @@
           {{#incompleteItems}}
             <form class="incomplete-items" action="/completedItems/{{item}}" method="post">
               <ul>
-                <li><button type="submit" class="check"><i class="fa fa-check" aria-hidden="true"></i>{{item}}</button></li>
+                <li><button type="submit" class="check"><i class="fa fa-square-o" aria-hidden="true"></i>{{item}}</button></li>
               </ul>
             </form>
           {{/incompleteItems}}
@@ -28,7 +28,7 @@
           <h2>Completed Items:</h2>
           {{#completedItems}}
             <ul class="completed-items">
-              <li>{{item}}</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>{{item}}</li>
             </ul>
           {{/completedItems}}
         {{/toDoList}}

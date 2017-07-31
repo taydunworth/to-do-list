@@ -5,8 +5,8 @@ const app = express()
 const expressValidator = require('express-validator')
 const bodyParser = require('body-parser')
 const toDoList = {
-  incompleteItems: [{ item: 'Fix errors on this list' }, { item: 'Add CSS Styling' }],
-  completedItems: []
+  incompleteItems: [],
+  completedItems: [{ item: 'Fix errors on the To-Do List Project' }, { item: 'Style the To-Do List Project' }]
 }
 
 app.use(express.static('public'))
@@ -24,17 +24,13 @@ app.get('/', function(req, res) {
 })
 
 app.post('/add', function(req, res) {
-  toDoList.incompleteItems.push(req.body.listItem)
+  toDoList.incompleteItems.push({ item: req.body.listItem })
   res.redirect('/')
-  console.log(req.body.listItem)
 })
 
 app.post('/completedItems/:item', (req, res) => {
   toDoList.completedItems.push({ item: req.params.item })
-  toDoList.incompleteItems = toDoList.incompleteItems.filter(
-    incompleteItems => incompleteItems.item !== req.params.item
-  )
-
+  toDoList.incompleteItems = toDoList.incompleteItems.filter(incompleteItems => incompleteItems.item !== req.params.item)
   res.redirect('/')
 })
 
