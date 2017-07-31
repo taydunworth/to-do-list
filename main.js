@@ -6,11 +6,6 @@ const expressValidator = require('express-validator')
 const bodyParser = require('body-parser')
 const expressSession = require('express-session')
 
-// const toDoList = {
-//   incompleteItems: [],
-//   completedItems: [{ item: 'Fix errors on the To-Do List Project' }, { item: 'Style the To-Do List Project' }]
-// }
-
 app.use(express.static('public'))
 app.use(expressValidator())
 app.use(bodyParser.json())
@@ -56,7 +51,7 @@ app.post('/completedItems', (req, res) => {
    todo.when = new Date()
    req.session.todoList = todoList
   }
-  
+
   res.redirect('/')
 })
 
